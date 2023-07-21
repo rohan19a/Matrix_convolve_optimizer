@@ -23,12 +23,28 @@ int convolve(matrix_t *a_matrix, matrix_t *b_matrix, matrix_t **output_matrix) {
     return -1;
   }
 
+
+  //Allocate space for the output matrix
   *output_matrix = (matrix_t*)malloc(size_of(matrix_t));
-  (*output_matrix)->rows = a_matrix->rows;
-  (*output_matrix)->cols = a_matrix->cols;
+
+
+
+  //Allocate space for the rows and columns of the output matrix
+  (*output_matrix)->rows = b_matrix->rows - a_matrix->rows + 1;
+  (*output_matrix)->cols = b_matrix->cols - a_matrix->cols + 1;
+
+  //Allocate space for the data of the output matrix
   (*output_matrix)->data = (int32_t*)malloc(sizeof(int32_t) * a_matrix->rows * a_matrix->cols);
 
-  
+  //Flip matrix b on both dimensions
+  b_matrix->rows, b_matrix->cols = b_matrix->cols, b_matrix->rows
+
+  //compute the convolution
+  for (int i = 0; i < (*output_matrix)->rows; i++) {
+    for (int j = 0; j < (*output_matrix)->cols; j++) {
+      (*output_matrix)->data[i][j] = dot(a_matrix->rows * a_matrix->cols, a_matrix->data, b_matrix->data);
+    }
+  }
 
   return output_matrix;
 }

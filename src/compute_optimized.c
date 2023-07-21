@@ -6,6 +6,9 @@
 // Computes the dot product of vec1 and vec2, both of size n
 int dot(uint32_t n, int32_t *vec1, int32_t *vec2) {
   // TODO: implement dot product of vec1 and vec2, both of size n
+  int sum = 0;
+
+  int32_t *
 
   return -1;
 }
